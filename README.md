@@ -84,6 +84,19 @@ Each n8n node is stateless: it connects, performs its action, and disconnects. A
                                                                  [Telegram: sendPhoto]
 ```
 
+## Example workflows
+
+Ready-made workflows you can import directly into n8n — no configuration needed for the "Hello World" template:
+
+- **[Hello World: Screenshot via Ceki](https://raw.githubusercontent.com/Ceki-me/n8n-templates/main/templates/hello-world-screenshot.json)** — Manual trigger → rent a browser → navigate → screenshot → done. Import, attach your Ceki API credential, hit Execute. (5 min setup)
+- **[Form → Create Task + Assign](https://raw.githubusercontent.com/Ceki-me/n8n-templates/main/templates/form-create-and-assign.json)** — Web form that creates a Ceki task and assigns an executor.
+- **[Scheduled: Assign Backlog Task](https://raw.githubusercontent.com/Ceki-me/n8n-templates/main/templates/search-browser-assign.json)** — Hourly scheduler that finds a cheap browser, picks a backlog task, assigns an agent.
+- **[Telegram Bot → Screenshot](https://raw.githubusercontent.com/Ceki-me/n8n-templates/main/templates/telegram-screenshot.json)** — Send a URL to a Telegram bot, get back a screenshot from a real human browser in a chosen geo.
+- **[Publish to Platform](https://raw.githubusercontent.com/Ceki-me/n8n-templates/main/templates/publish-to-platform.json)** — Manual trigger → human-browser automation for vc.ru / Mataroa / HackerNoon posting.
+- **[Create + Assign via Native Node](https://raw.githubusercontent.com/Ceki-me/n8n-templates/main/templates/create-and-assign-task-ceki-node.json)** — Use the Ceki Contract node instead of HTTP calls.
+
+All templates, setup instructions, and API details: **[Ceki-me/n8n-templates](https://github.com/Ceki-me/n8n-templates)**.
+
 ## Develop
 
 ```bash
