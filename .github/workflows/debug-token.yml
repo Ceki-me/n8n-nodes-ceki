@@ -1,18 +1,29 @@
 name: Debug NPM_TOKEN
 
-on:
-  workflow_dispatch:
+on: workflow_dispatch
 
 jobs:
-  debug-token:
+  debug:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+          cache: 'npm'
+          registry-url: 'https://registry.npmjs.org'
 
-      - name: Show token info
+      - name: Check npm config
         run: |
-          TOKEN="${{ secrets.NPM_TOKEN }}"
-          echo "Token length: ${#TOKEN}"
-          echo "Token starts with: ${TOKEN:0:4}"
-          echo "Token ends with: ${TOKEN: -4}"
-        shell: bash
+          echo "=== npmrc contents ==="
+          cat .npmrc 2>/dev/null || echo "no .npmrc in cwd"
+          echo "=== ~/.npmrc contents ==="
+          cat ~/.npmrc 2>/dev/null || echo "no ~/.npmrc"
+          echo "=== NPM_CONFIG_USERCONFIG ==="
+          echo "$NPM_CONFIG_USERCONFIG"
+          echo "=== NPM_CONFIG_USERCONFIG contents ==="
+          cat "$NPM_CONFIG_USERCONFIG" 2>/dev/null || echo "no such file"
+          echo "=== npm config list ==="
+          npm config list 2>&1
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
